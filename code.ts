@@ -1,7 +1,8 @@
-let movieData = require("./data");
-let $ = require("jquery");
+import {movieData} from "./data";
+import * as $ from "jquery";
+import { Review } from "./interfaces";
 
-function renderMovie(data){
+function renderMovie(data: Review){
   ui.title.text(data.title);
   ui.review.text(data.review);
   ui.poster.attr("src", data.imgUrl);
@@ -34,7 +35,14 @@ let ui = {
   ]
 };
 
-ui.rating.on("click", "span", function(e){
+//Nedan är icke-ES6-kod!
+// ui.rating.on("click", "span", function(e){
+//   let star = $(e.target);
+//   let rating = parseInt(star.attr("data-rating-id"));
+//   changeStarRating(rating);
+// });
+
+ui.rating.on("click", "span", (e) => {
   let star = $(e.target);
   let rating = parseInt(star.attr("data-rating-id"));
   changeStarRating(rating);
